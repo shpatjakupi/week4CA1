@@ -25,7 +25,7 @@ public class CA1Resource {
                 "dev",
                 "ax2",
                 EMF_Creator.Strategy.CREATE);
-    private static final StudentsFacade FACADE =  StudentsFacade.getCA1Facade(EMF);
+    private static final StudentsFacade FACADE =  StudentsFacade.getStudentsFacade(EMF);
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
             
     @GET

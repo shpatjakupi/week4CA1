@@ -21,11 +21,11 @@ public class Students implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     private String name;
     private String color;
 
-    public Students(Long id, String name, String color) {
+    public Students(int id, String name, String color) {
         this.id = id;
         this.name = name;
         this.color = color;
@@ -50,11 +50,11 @@ public class Students implements Serializable {
     public Students() {
     }
         
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
    
