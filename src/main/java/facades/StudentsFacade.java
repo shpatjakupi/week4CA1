@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -50,22 +51,30 @@ public class StudentsFacade implements IstudentsFacade{
 
     @Override
     public List<Students> getAllStudents() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager em = emf.createEntityManager();
+        return em.createNamedQuery("Students.getAll").getResultList();
     }
 
     @Override
     public List<Students> getStudentsByName(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       EntityManager em = emf.createEntityManager();
+        TypedQuery<Students> tq = em.createNamedQuery("Students.getByName", Students.class);
+        tq.setParameter("name", "%" + name + "%");
+        return tq.getResultList();
     }
 
     @Override
     public Students getStudentsById(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       EntityManager em = emf.createEntityManager();
+       return em.find(Students.class, id);
     }
 
     @Override
     public List<Students> getStudentsByColor(String color) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       EntityManager em = emf.createEntityManager();
+        TypedQuery<Students> tq = em.createNamedQuery("Students.getByColor", Students.class);
+        tq.setParameter("color", "%" + color + "%");
+        return tq.getResultList();
     }
 
 }
