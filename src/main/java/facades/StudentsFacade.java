@@ -4,7 +4,6 @@ import entities.Students;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import utils.EMF_Creator;
 
@@ -65,7 +64,7 @@ public class StudentsFacade {
     }
 
 //    @Override
-    public Students getStudentsById(long id) {
+    public Students getStudentsById(int id) {
        EntityManager em = emf.createEntityManager();
        return em.find(Students.class, id);
     }
@@ -95,19 +94,25 @@ public class StudentsFacade {
 //    }
     
     public void populate(){
-        addStudents(new Students(1, "Jens", "rød"));
-        addStudents(new Students(2, "Hans", "rød"));
-        addStudents(new Students(3, "Bent", "rød"));
-        addStudents(new Students(4, "Boerge", "rød"));
+        addStudents(new Students(1, "Jens", "red"));
+        addStudents(new Students(2, "Hans", "red"));
+        addStudents(new Students(3, "Bent", "red"));
+        addStudents(new Students(4, "Boerge", "red"));
     }
     
-    
+    // Test
     public static void main(String[] args) {
         StudentsFacade sf = getStudentsFacade(EMF_Creator.createEntityManagerFactory(EMF_Creator.DbSelector.DEV, EMF_Creator.Strategy.CREATE));
         sf.populate();
         
-        List<Students> students = sf.getAllStudents();
-        System.out.println(students);
+////        Students s = sf.getStudentCount();
+//        List<Students> students = sf.getAllStudents();
+//        List<Students> students = sf.getStudentsByName("Jens");
+        Students s = sf.getStudentsById(1);
+//        List<Students> students = sf.getStudentsByColor("red");
+        
+        
+        System.out.println(s);
     }
 
 }
