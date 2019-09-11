@@ -2,9 +2,9 @@ package rest;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import entities.CA1;
+import entities.Students;
 import utils.EMF_Creator;
-import facades.CA1Facade;
+import facades.StudentsFacade;
 import javax.persistence.EntityManagerFactory;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -25,7 +25,7 @@ public class CA1Resource {
                 "dev",
                 "ax2",
                 EMF_Creator.Strategy.CREATE);
-    private static final CA1Facade FACADE =  CA1Facade.getCA1Facade(EMF);
+    private static final StudentsFacade FACADE =  StudentsFacade.getCA1Facade(EMF);
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
             
     @GET
@@ -37,7 +37,7 @@ public class CA1Resource {
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public String getRenameMeCount() {
-        long count = FACADE.getRenameMeCount();
+        long count = FACADE.getStudentCount();
         //System.out.println("--------------->"+count);
         return "{\"count\":"+count+"}";  //Done manually so no need for a DTO
     }

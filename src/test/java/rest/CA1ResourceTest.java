@@ -1,6 +1,6 @@
 package rest;
 
-import entities.CA1;
+import entities.Students;
 import utils.EMF_Creator;
 import io.restassured.RestAssured;
 import static io.restassured.RestAssured.given;
@@ -71,8 +71,8 @@ public class CA1ResourceTest {
         try {
             em.getTransaction().begin();
             em.createNamedQuery("CA1.deleteAllRows").executeUpdate();
-            em.persist(new CA1("Some txt","More text"));
-            em.persist(new CA1("aaa","bbb"));
+            //em.persist(new Students("Some txt","More text"));
+            //em.persist(new Students("aaa","bbb"));
            
             em.getTransaction().commit();
         } finally {

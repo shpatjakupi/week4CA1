@@ -1,7 +1,7 @@
 package facades;
 
 import utils.EMF_Creator;
-import entities.CA1;
+import entities.Students;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import org.junit.jupiter.api.AfterAll;
@@ -19,7 +19,7 @@ import utils.EMF_Creator.Strategy;
 public class FacadeTest {
 
     private static EntityManagerFactory emf;
-    private static CA1Facade facade;
+    private static StudentsFacade facade;
 
     public FacadeTest() {
     }
@@ -32,7 +32,7 @@ public class FacadeTest {
                 "dev",
                 "ax2",
                 EMF_Creator.Strategy.CREATE);
-        facade = CA1Facade.getCA1Facade(emf);
+        facade = StudentsFacade.getCA1Facade(emf);
     }
 
     /*   **** HINT **** 
@@ -44,7 +44,7 @@ public class FacadeTest {
     @BeforeAll
     public static void setUpClassV2() {
        emf = EMF_Creator.createEntityManagerFactory(DbSelector.TEST,Strategy.DROP_AND_CREATE);
-       facade = CA1Facade.getCA1Facade(emf);
+       facade = StudentsFacade.getCA1Facade(emf);
     }
 
     @AfterAll
@@ -59,9 +59,9 @@ public class FacadeTest {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            em.createNamedQuery("CA1.deleteAllRows").executeUpdate();
-            em.persist(new CA1("Some txt", "More text"));
-            em.persist(new CA1("aaa", "bbb"));
+            em.createNamedQuery("Students.deleteAllRows").executeUpdate();
+          //  em.persist(new Students(1,"Some txt", "More text"));
+          //  em.persist(new Students("aaa", "bbb"));
 
             em.getTransaction().commit();
         } finally {
@@ -77,7 +77,7 @@ public class FacadeTest {
     // TODO: Delete or change this method 
     @Test
     public void testAFacadeMethod() {
-        assertEquals(2, facade.getRenameMeCount(), "Expects two rows in the database");
+        assertEquals(2, facade.getStudentCount(), "Expects two rows in the database");
     }
 
 }
