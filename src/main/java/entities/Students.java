@@ -8,13 +8,12 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
-
 @Entity
 @NamedQueries({
-@NamedQuery(name = "Students.deleteAllRows", query = "DELETE from Students"),
-@NamedQuery(name = "Students.getAll", query = "SELECT s FROM Students s"),
-@NamedQuery(name = "Students.getByName", query = "SELECT s FROM Students s WHERE s.name LIKE :name"),
-@NamedQuery(name = "Students.getByColor", query = "SELECT s FROM Students s WHERE s.color LIKE :color")
+    @NamedQuery(name = "Students.deleteAllRows", query = "DELETE from Students"),
+    @NamedQuery(name = "Students.getAll", query = "SELECT s FROM Students s"),
+    @NamedQuery(name = "Students.getByName", query = "SELECT s FROM Students s WHERE s.name LIKE :name"),
+    @NamedQuery(name = "Students.getByColor", query = "SELECT s FROM Students s WHERE s.color LIKE :color")
 })
 public class Students implements Serializable {
 
@@ -46,10 +45,10 @@ public class Students implements Serializable {
     public void setColor(String color) {
         this.color = color;
     }
-    
+
     public Students() {
     }
-        
+
     public int getId() {
         return id;
     }
@@ -57,10 +56,4 @@ public class Students implements Serializable {
     public void setId(int id) {
         this.id = id;
     }
-   
-    
-    
-    
-
-   
 }
