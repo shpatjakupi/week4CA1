@@ -79,7 +79,7 @@ public class FacadeTest {
     // TODO: Delete or change this method 
     @Test
     public void testAFacadeMethod() {
-        assertEquals(4, facade.getStudentCount(), "Expects two rows in the database");
+        assertEquals(4, facade.getStudentCount(), "Expects four rows in the database");
     }
 
 }
