@@ -33,7 +33,7 @@ public class StudentsResource {
 //    public String demo() {
 //        return "{\"msg\":\"Hello World\"}";
     public String populate(){
-        return GSON.toJson("Students.getAll()");
+        return GSON.toJson("getAllStudents()");
     }
     
     @Path("count")
