@@ -15,7 +15,9 @@ import java.util.List;
 public interface IstudentsFacade {
     List<Students> getAllStudents();
     List<Students> getStudentsByName(String name);
-    Students getStudentsById(long id);
+    Students getStudentsById(int id);
     List<Students> getStudentsByColor(String color);
     long getStudentCount();
+    Students addStudents(Students student);
+    void populateStudents();
 }

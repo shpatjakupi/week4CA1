@@ -1,7 +1,7 @@
 package facades;
 
-import utils.EMF_Creator;
 import entities.Students;
+import utils.EMF_Creator;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import org.junit.jupiter.api.AfterAll;
@@ -10,7 +10,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import utils.Settings;
 import utils.EMF_Creator.DbSelector;
 import utils.EMF_Creator.Strategy;
 
@@ -28,11 +27,11 @@ public class FacadeTest {
     public static void setUpClass() {
         emf = EMF_Creator.createEntityManagerFactory(
                 "pu",
-                "jdbc:mysql://localhost:3307/CA1_test",
+                "jdbc:mysql://localhost:3307/CA1",
                 "dev",
                 "ax2",
                 EMF_Creator.Strategy.CREATE);
-        facade = StudentsFacade.getCA1Facade(emf);
+        facade = StudentsFacade.getStudentsFacade(emf);
     }
 
     /*   **** HINT **** 
@@ -44,7 +43,8 @@ public class FacadeTest {
     @BeforeAll
     public static void setUpClassV2() {
        emf = EMF_Creator.createEntityManagerFactory(DbSelector.TEST,Strategy.DROP_AND_CREATE);
-       facade = StudentsFacade.getCA1Facade(emf);
+       facade = StudentsFacade.getStudentsFacade(emf);
+       
     }
 
     @AfterAll
@@ -60,8 +60,10 @@ public class FacadeTest {
         try {
             em.getTransaction().begin();
             em.createNamedQuery("Students.deleteAllRows").executeUpdate();
-          //  em.persist(new Students(1,"Some txt", "More text"));
-          //  em.persist(new Students("aaa", "bbb"));
+            em.persist(new Students(1,"Henrik", "grøn"));
+            em.persist(new Students(2, "Talha", "green-gul"));
+            em.persist(new Students(3, "Shpat", "???"));
+            em.persist(new Students(4, "Younes", "gul"));
 
             em.getTransaction().commit();
         } finally {
@@ -77,7 +79,7 @@ public class FacadeTest {
     // TODO: Delete or change this method 
     @Test
     public void testAFacadeMethod() {
-        assertEquals(2, facade.getStudentCount(), "Expects two rows in the database");
+        assertEquals(4, facade.getStudentCount(), "Expects four rows in the database");
     }
 
 }

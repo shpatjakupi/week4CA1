@@ -4,8 +4,8 @@ import entities.Students;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
+import utils.EMF_Creator;
 
 /**
  *
@@ -25,7 +25,7 @@ public class StudentsFacade implements IstudentsFacade{
      * @param _emf
      * @return an instance of this facade class.
      */
-    public static StudentsFacade getCA1Facade(EntityManagerFactory _emf) {
+    public static StudentsFacade getStudentsFacade(EntityManagerFactory _emf) {
         if (instance == null) {
             emf = _emf;
             instance = new StudentsFacade();
@@ -49,13 +49,13 @@ public class StudentsFacade implements IstudentsFacade{
         
     }
 
-    @Override
+   @Override
     public List<Students> getAllStudents() {
         EntityManager em = emf.createEntityManager();
         return em.createNamedQuery("Students.getAll").getResultList();
     }
 
-    @Override
+  @Override
     public List<Students> getStudentsByName(String name) {
        EntityManager em = emf.createEntityManager();
         TypedQuery<Students> tq = em.createNamedQuery("Students.getByName", Students.class);
@@ -63,18 +63,47 @@ public class StudentsFacade implements IstudentsFacade{
         return tq.getResultList();
     }
 
-    @Override
-    public Students getStudentsById(long id) {
+  @Override
+    public Students getStudentsById(int id) {
        EntityManager em = emf.createEntityManager();
        return em.find(Students.class, id);
     }
 
-    @Override
+  @Override
     public List<Students> getStudentsByColor(String color) {
        EntityManager em = emf.createEntityManager();
         TypedQuery<Students> tq = em.createNamedQuery("Students.getByColor", Students.class);
         tq.setParameter("color", "%" + color + "%");
         return tq.getResultList();
     }
+   @Override 
+   public Students addStudents(Students student){
+        try {
+            EntityManager em = emf.createEntityManager();
+                em.getTransaction().begin();
+                em.persist(student);
+                em.getTransaction().commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } return student;
+    }
+    
+     @Override
+    public void populateStudents() {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.createNamedQuery("Students.deleteAllRows").executeUpdate();
+            em.persist(new Students(1, "bro", "farveblind"));
+            em.persist(new Students(2, "janss", "gennemsigtig"));
+            em.persist(new Students(3, "jens", "sort"));
+            em.persist(new Students(4, "ole", "rød"));
+            em.persist(new Students(5, "bo", "gul"));
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+    }
+ 
 
 }
