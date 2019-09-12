@@ -95,8 +95,8 @@ public class StudentsFacade {
     
     public void populate(){
         addStudents(new Students(1, "Jens", "red"));
-        addStudents(new Students(2, "Hans", "red"));
-        addStudents(new Students(3, "Bent", "red"));
+        addStudents(new Students(2, "Hans", "yellow"));
+        addStudents(new Students(3, "Bent", "green"));
         addStudents(new Students(4, "Boerge", "red"));
     }
     

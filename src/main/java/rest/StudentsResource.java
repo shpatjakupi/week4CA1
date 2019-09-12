@@ -16,12 +16,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 //Todo Remove or change relevant parts before ACTUAL use
-@Path("xxx")
-public class CA1Resource {
+@Path("students")
+public class StudentsResource {
 
     private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory(
                 "pu",
-                "jdbc:mysql://localhost:3306/CA1",
+                "jdbc:mysql://localhost:3307/CA1",
                 "dev",
                 "ax2",
                 EMF_Creator.Strategy.CREATE);
@@ -30,9 +30,12 @@ public class CA1Resource {
             
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public String demo() {
-        return "{\"msg\":\"Hello World\"}";
+//    public String demo() {
+//        return "{\"msg\":\"Hello World\"}";
+    public String populate(){
+        return GSON.toJson("Students.getAll()");
     }
+    
     @Path("count")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
