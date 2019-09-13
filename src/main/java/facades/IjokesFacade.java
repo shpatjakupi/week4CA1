@@ -17,8 +17,8 @@ public interface IjokesFacade {
    
     List<Joke> getAllJokes();
     Joke getJokeById(int id);
-    Joke getJokeByReference();
-    Joke getJokeByType();
+    List<Joke> getJokeByReference(String reference);
+    List<Joke> getJokeByType(String type);
     Joke getRandomJoke();
 
     

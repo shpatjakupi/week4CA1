@@ -57,7 +57,7 @@ public class JokesFacade implements IjokesFacade {
     }
 
     @Override
-    public List <Joke> getJokeByType(String type) {
+    public List<Joke> getJokeByType(String type) {
         EntityManager em = emf.createEntityManager();
         TypedQuery<Joke> tq = em.createNamedQuery("Joke.getByType", Joke.class);
         tq.setParameter("type", "%" + type + "%");
@@ -68,5 +68,6 @@ public class JokesFacade implements IjokesFacade {
     public Joke getRandomJoke() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+
 }
