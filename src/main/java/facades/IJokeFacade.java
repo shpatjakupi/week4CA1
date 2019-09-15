@@ -14,8 +14,9 @@ import java.util.List;
  *
  * @author Younes
  */
-public interface IjokesFacade {
+public interface IJokeFacade {
    
+
     List<JokeDTO> getAllJokes();
     JokeDTO getJokeById(int id);
     List<JokeDTO> getJokeByReference(String reference);
@@ -23,6 +24,5 @@ public interface IjokesFacade {
     JokeDTO getRandomJoke();
     Joke addJoke(Joke joke);
     void populateJokes();
-
     
 }

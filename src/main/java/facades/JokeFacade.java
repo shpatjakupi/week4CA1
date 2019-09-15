@@ -17,7 +17,7 @@ import javax.persistence.TypedQuery;
  *
  * @author Younes
  */
-public class JokeFacade implements IjokesFacade {
+public class JokeFacade implements IJokeFacade {
     
     private static JokeFacade instance;
     private static EntityManagerFactory emf;
