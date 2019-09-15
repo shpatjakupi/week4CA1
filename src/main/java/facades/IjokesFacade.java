@@ -5,6 +5,7 @@
  */
 package facades;
 
+import DTO.JokeDTO;
 import entities.Joke;
 import java.util.List;
 
@@ -15,11 +16,13 @@ import java.util.List;
  */
 public interface IjokesFacade {
    
-    List<Joke> getAllJokes();
-    Joke getJokeById(int id);
-    Joke getJokeByReference();
-    Joke getJokeByType();
-    Joke getRandomJoke();
+    List<JokeDTO> getAllJokes();
+    JokeDTO getJokeById(int id);
+    List<JokeDTO> getJokeByReference(String reference);
+    List<JokeDTO> getJokeByType(String type);
+    JokeDTO getRandomJoke();
+    Joke addJoke(Joke joke);
+    void populateJokes();
 
     
 }
