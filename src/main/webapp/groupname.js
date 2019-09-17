@@ -1,6 +1,6 @@
 
 var div = document.getElementById("div");
-let url = "http://localhost:8080/CA1/api/students/all";
+let url = "https://shpat.dk/CA1/api/students/all";
 fetch(url)
         .then(res => res.json()) //in flow1, just do it
         .then(data => {
